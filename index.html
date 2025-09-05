@@ -1,230 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel 7 | Dashboard Premium</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel 7 | Dashboard</title>
   <style>
-    :root {
-      --bg-primary: #050505;
-      --bg-secondary: #0a0a0a;
-      --bg-card: #111111;
-      --accent-primary: #444444;
-      --accent-secondary: #666666;
-      --accent-tertiary: #888888;
-      --text-primary: #f0f0f0;
-      --text-secondary: #aaaaaa;
-      --border-color: rgba(255, 255, 255, 0.1);
-      --success: #666666;
-      --card-radius: 12px;
-      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      --link-color: #4a90e2;
-      --link-hover: #6ba8e9;
-    }
-
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
       margin: 0;
       padding: 0;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, var(--bg-primary) 0%, #151515 100%);
-      color: var(--text-primary);
-      line-height: 1.6;
-      padding-bottom: 40px;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
     header {
-      position: sticky;
-      top: 0;
-      background: rgba(5, 5, 5, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 18px;
+      background: #222;
+      padding: 15px;
       text-align: center;
-      z-index: 100;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .logo {
-      font-size: 32px;
-      font-weight: 700;
-      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: 1.2px;
-      display: inline-block;
-      margin-bottom: 5px;
-      position: relative;
-      padding: 0 10px;
-    }
-
-    .logo::after {
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 10%;
-      width: 80%;
-      height: 2px;
-      background: linear-gradient(45deg, var(--accent-primary), transparent, var(--accent-secondary));
-      border-radius: 2px;
-    }
-
-    .tagline {
-      font-size: 14px;
-      color: var(--text-secondary);
-      font-weight: 300;
-      letter-spacing: 0.5px;
-      font-family: 'Open Sans', sans-serif;
+      font-size: 20px;
+      font-weight: bold;
     }
 
     .search-box {
-      max-width: 700px;
-      margin: 35px auto;
-      padding: 0 20px;
-      position: relative;
+      margin: 15px;
+      text-align: center;
     }
 
     .search-box input {
-      width: 100%;
-      padding: 16px 50px 16px 20px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      background: rgba(20, 20, 20, 0.7);
-      color: var(--text-primary);
-      font-size: 16px;
-      transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    .search-box input:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: 0 4px 15px rgba(68, 68, 68, 0.25);
-      background: rgba(25, 25, 25, 0.8);
-    }
-
-    .search-box input::placeholder {
-      color: var(--text-secondary);
-      opacity: 0.6;
-    }
-
-    .search-box i {
-      position: absolute;
-      right: 35px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--accent-primary);
-      font-size: 18px;
+      width: 90%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px;
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      padding: 15px;
     }
 
     .card {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(145deg, var(--bg-card), #1a1a1a);
-      border-radius: var(--card-radius);
-      border: 1px solid var(--border-color);
-      padding: 20px;
+      background: #333;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
       cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
     }
 
     .emoji {
-      font-size: 36px;
-      margin-bottom: 12px;
-      text-align: center;
-    }
-
-    .card h3 {
-      margin: 8px 0;
-      font-size: 16px;
-      font-weight: 600;
-      text-align: center;
-      color: var(--text-primary);
-    }
-
-    .keywords {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin: 8px 0 0;
-      text-align: center;
-      line-height: 1.4;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .keyword {
-      background: rgba(68, 68, 68, 0.2);
-      padding: 4px 10px;
-      border-radius: 20px;
-      color: var(--text-secondary);
-      transition: var(--transition);
-      font-family: 'Open Sans', sans-serif;
-      border: 1px solid rgba(68, 68, 68, 0.2);
-    }
-
-    .empty {
-      text-align: center;
-      color: var(--text-secondary);
-      grid-column: 1/-1;
-      padding: 60px 20px;
-      border: 2px dashed var(--border-color);
-      border-radius: var(--card-radius);
-      background: rgba(20, 20, 20, 0.4);
-    }
-
-    .empty i {
-      font-size: 42px;
-      margin-bottom: 15px;
-      opacity: 0.5;
-      color: var(--accent-primary);
-    }
-
-    .empty h3 {
-      font-weight: 500;
-      margin-bottom: 10px;
-      color: var(--text-primary);
-    }
-
-    .empty p {
-      color: var(--text-secondary);
+      font-size: 30px;
+      margin-bottom: 8px;
     }
 
     .modal {
       position: fixed;
-      inset: 0;
-      background: rgba(5, 5, 5, 0.98);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
       display: none;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       padding: 20px;
-      z-index: 1000;
-      overflow-y: auto;
+      box-sizing: border-box;
     }
 
     .modal.active {
@@ -232,103 +70,47 @@
     }
 
     .modal-content {
-      background: linear-gradient(135deg, var(--bg-secondary) 0%, #151515 100%);
-      border-radius: var(--card-radius);
-      width: 90%;
-      max-width: 900px;
-      padding: 30px;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--border-color);
-    }
-
-    .modal-header {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .modal-header h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-
-    .modal-description {
-      margin-bottom: 20px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      text-align: center;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    .modal iframe {
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 500px;
       width: 100%;
-      max-width: 800px;
-      height: 450px;
-      border: none;
-      border-radius: 12px;
-      background: #000;
-      margin: 0 auto;
-      display: block;
+      text-align: center;
     }
 
     .close-btn {
-      margin-top: 25px;
-      padding: 12px 26px;
-      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #444;
       border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-      font-weight: 500;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      font-family: 'Montserrat', sans-serif;
+      border-radius: 6px;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">PAINEL 7</div>
-    <div class="tagline">Ferramentas e Recursos Exclusivos</div>
-  </header>
+  <header>PAINEL 7</header>
 
   <div class="search-box">
-    <input type="text" id="search" placeholder="Buscar por nome, palavra-chave...">
-    <i class="fas fa-search"></i>
+    <input type="text" id="search" placeholder="Buscar...">
   </div>
 
   <div class="grid" id="cards"></div>
 
   <div class="modal" id="modal">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 id="modalTitle"></h2>
-      </div>
-      <div class="modal-body">
-        <p class="modal-description"><strong>Descrição:</strong> <span id="modalDescription"></span></p>
-        <p class="modal-description"><strong>Tutorial:</strong></p>
-        <iframe id="modalPlayer" allowfullscreen></iframe>
-      </div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
       <button class="close-btn" id="closeModal">Fechar</button>
     </div>
   </div>
 
   <script>
     const CATEGORIES = [
-      { emoji: "🕵️", title: "Puxar Dados", keywords: ["Cpf","Nome","Telefone"], description:
-      "Puxar dados via CPF, TELEFONE,NOME...https://t.me/puxadasSeven https://t.me/sevenpuxada", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-      { emoji: "🍊", title: "Lara Facil", keywords: ["Pagbank","Cora","Outros..."], description: "Dicas e truques para melhorar sua vida amorosa.", video: "https://drive.google.com/file/d/SEU_ID_DE_VIDEO/preview" },
-      { emoji: "💰", title: "50$ a 80$ No dia", keywords: ["Telegram","Whatssap","Instagram"], description: "Conheça os veículos mais potentes.", video: "https://www.youtube.com/embed/ScMzIvxBSi4" },
-      { emoji: "📚", title: "Ebooks", keywords: ["cidades","bairro","turismo"], description: "Explore as cidades mais interessantes do mundo.", video: "https://www.youtube.com/embed/tgbNymZ7vqY" }
+      { emoji: "🕵️", title: "Puxar Dados", description: "Consultar dados básicos via CPF, nome ou telefone." },
+      { emoji: "🍊", title: "Lara Fácil", description: "Dicas para contas digitais Pagbank, Cora e outras." },
+      { emoji: "💰", title: "Ganhar Renda", description: "Métodos para renda extra online." },
+      { emoji: "📚", title: "Ebooks", description: "Coleção de ebooks exclusivos." }
     ];
 
     const grid = document.getElementById("cards");
@@ -336,82 +118,42 @@
     const modal = document.getElementById("modal");
     const modalTitle = document.getElementById("modalTitle");
     const modalDescription = document.getElementById("modalDescription");
-    const modalPlayer = document.getElementById("modalPlayer");
     const closeModal = document.getElementById("closeModal");
-
-    // Função para detectar e converter URLs em links clicáveis
-    function linkify(text) {
-      const urlRegex = /(https?:\/\/[^\s]+)/g;
-      return text.replace(urlRegex, function(url) {
-        let href = url;
-        if (!url.startsWith('http')) {
-          href = 'https://' + url;
-        }
-        return '<a href="' + href + '" target="_blank" class="auto-link">' + url + '</a>';
-      });
-    }
-
-    // 🚀 Função corrigida (compatível com WebView do Sketchware)
-    function normalize(str) {
-      return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    }
 
     function renderCards(filter="") {
       grid.innerHTML = "";
-      const q = normalize(filter);
-      const filtered = CATEGORIES.filter(c=>{
-        const hay = normalize(c.title + " " + (c.keywords||[]).join(" "));
-        return q.split(/\s+/).every(piece=>hay.includes(piece));
-      });
-      
-      if(filtered.length===0){
-        grid.innerHTML = `
-          <div class="empty">
-            <i class="fas fa-search"></i>
-            <h3>Nenhum resultado encontrado</h3>
-            <p>Tente usar termos de pesquisa diferentes</p>
-          </div>`;
+      const q = filter.toLowerCase();
+      const filtered = CATEGORIES.filter(c => 
+        c.title.toLowerCase().includes(q) || 
+        c.description.toLowerCase().includes(q)
+      );
+
+      if(filtered.length === 0){
+        grid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#888;'>Nenhum resultado</p>";
         return;
       }
-      
-      filtered.forEach((c, index) => {
+
+      filtered.forEach(c => {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
           <div class="emoji">${c.emoji}</div>
           <h3>${c.title}</h3>
-          <div class="keywords">
-            ${(c.keywords||[]).slice(0,4).map(k => `<span class="keyword">${k}</span>`).join('')}
-          </div>`;
-        
-        card.addEventListener("click", ()=>{
+        `;
+        card.onclick = () => {
           modal.classList.add("active");
           modalTitle.textContent = c.emoji + " " + c.title;
-          modalDescription.innerHTML = linkify(c.description || "");
-          modalPlayer.src = c.video;
-          document.body.style.overflow = 'hidden';
-        });
-        
+          modalDescription.textContent = c.description;
+        };
         grid.appendChild(card);
       });
     }
 
     renderCards();
-    search.addEventListener("input", e=>renderCards(e.target.value));
 
-    closeModal.addEventListener("click", ()=>{
-      modal.classList.remove("active");
-      modalPlayer.src = "";
-      document.body.style.overflow = 'auto';
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove("active");
-        modalPlayer.src = "";
-        document.body.style.overflow = 'auto';
-      }
-    });
+    search.oninput = e => renderCards(e.target.value);
+    closeModal.onclick = () => modal.classList.remove("active");
+    modal.onclick = e => { if(e.target === modal) modal.classList.remove("active"); };
   </script>
 </body>
 </html>
