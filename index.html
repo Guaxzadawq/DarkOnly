@@ -3,167 +3,540 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>P a i n e l 7</title>
+  <title>Painel 7 | Dashboard Premium</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --bg-primary: #050505;
+      --bg-secondary: #0a0a0a;
+      --bg-card: #111111;
+      --accent-primary: #444444;
+      --accent-secondary: #666666;
+      --accent-tertiary: #888888;
+      --text-primary: #f0f0f0;
+      --text-secondary: #aaaaaa;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --success: #666666;
+      --card-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --link-color: #4a90e2;
+      --link-hover: #6ba8e9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, #151515 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding-bottom: 40px;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      opacity: 0.2;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); }
+      33% { transform: translateY(-30px) translateX(20px) rotate(120deg); }
+      66% { transform: translateY(20px) translateX(-20px) rotate(240deg); }
+      100% { transform: translateY(0) translateX(0) rotate(360deg); }
+    }
+
     header {
       position: sticky;
       top: 0;
-      background: rgba(17,17,17,0.9);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding: 16px;
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 18px;
       text-align: center;
-      font-size: 26px;
-      font-weight: bold;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: slideDown 0.5s ease-out;
     }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1.2px;
+      display: inline-block;
+      margin-bottom: 5px;
+      position: relative;
+      padding: 0 10px;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(45deg, var(--accent-primary), transparent, var(--accent-secondary));
+      border-radius: 2px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
     .search-box {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 0 12px;
+      max-width: 700px;
+      margin: 35px auto;
+      padding: 0 20px;
+      position: relative;
+      animation: fadeIn 0.6s ease-out 0.2s both;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .search-box input {
       width: 100%;
-      padding: 12px 16px;
+      padding: 16px 50px 16px 20px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: #222;
-      color: #fff;
+      border: 1px solid var(--border-color);
+      background: rgba(20, 20, 20, 0.7);
+      color: var(--text-primary);
       font-size: 16px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      font-family: 'Open Sans', sans-serif;
     }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 4px 15px rgba(68, 68, 68, 0.25);
+      background: rgba(25, 25, 25, 0.8);
+    }
+
+    .search-box input::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }
+
+    .search-box i {
+      position: absolute;
+      right: 35px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-primary);
+      font-size: 18px;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 16px;
       padding: 20px;
       max-width: 1000px;
       margin: auto;
     }
+
     .card {
       position: relative;
       overflow: hidden;
-      background: #1a1a1a;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(145deg, var(--bg-card), #1a1a1a);
+      border-radius: var(--card-radius);
+      border: 1px solid var(--border-color);
       padding: 20px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: var(--transition);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      animation: cardAppear 0.5s ease-out both;
     }
+
+    @keyframes cardAppear {
+      0% { 
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+      }
+      100% { 
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
     .card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      border-color: rgba(68, 68, 68, 0.3);
     }
-    .card h3 {
-      margin: 8px 0 0;
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .card p {
-      font-size: 12px;
-      color: #aaa;
-      margin: 4px 0 0;
-    }
-    .emoji {
-      font-size: 28px;
-    }
-    .card::after {
+
+    /* ANIMAÇÃO DA LINHA - ESTILO MELHORADO */
+    .card::before {
       content: "";
       position: absolute;
       top: 0;
-      left: -150px;
-      width: 100px;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-      animation: shimmer 2.2s infinite;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        var(--accent-primary), 
+        var(--accent-secondary),
+        var(--accent-primary), 
+        transparent);
+      opacity: 0.8;
+      background-size: 200% 100%;
+      animation: lineWave 3s infinite linear;
+      transition: var(--transition);
     }
-    @keyframes shimmer {
-      0% { left: -150px; }
-      100% { left: 100%; }
+
+    @keyframes lineWave {
+      0% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: -100% 0;
+      }
     }
+
+    .card:hover::before {
+      height: 5px;
+      opacity: 1;
+      animation: lineWave 1.5s infinite linear;
+      background: linear-gradient(90deg, 
+        transparent, 
+        #888888, 
+        #cccccc,
+        #888888, 
+        transparent);
+    }
+
+    .emoji {
+      font-size: 36px;
+      margin-bottom: 12px;
+      text-align: center;
+      filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+      transition: var(--transition);
+    }
+
+    .card:hover .emoji {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .card h3 {
+      margin: 8px 0;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text-primary);
+    }
+
+    .keywords {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin: 8px 0 0;
+      text-align: center;
+      line-height: 1.4;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .keyword {
+      background: rgba(68, 68, 68, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      font-family: 'Open Sans', sans-serif;
+      border: 1px solid rgba(68, 68, 68, 0.2);
+    }
+
+    .card:hover .keyword {
+      background: rgba(68, 68, 68, 0.3);
+      color: var(--text-primary);
+      border-color: rgba(68, 68, 68, 0.4);
+    }
+
     .empty {
       text-align: center;
-      color: #aaa;
+      color: var(--text-secondary);
       grid-column: 1/-1;
-      padding: 40px;
-      border: 1px dashed rgba(255,255,255,0.2);
-      border-radius: 12px;
+      padding: 60px 20px;
+      border: 2px dashed var(--border-color);
+      border-radius: var(--card-radius);
+      background: rgba(20, 20, 20, 0.4);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .empty i {
+      font-size: 42px;
+      margin-bottom: 15px;
+      opacity: 0.5;
+      color: var(--accent-primary);
+    }
+
+    .empty h3 {
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .empty p {
+      color: var(--text-secondary);
+    }
+
+    /* Estilo para links detectados automaticamente */
+    .auto-link {
+      color: var(--link-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .auto-link:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
     }
 
     /* modal */
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(5, 5, 5, 0.98);
       display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       padding: 20px;
-      z-index: 9999;
+      z-index: 1000;
       overflow-y: auto;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(8px);
     }
+
     .modal.active {
       display: flex;
+      opacity: 1;
     }
-    .modal h2 {
-      margin-bottom: 12px;
-      text-align: center;
-    }
-    .modal p {
-      max-width: 800px;
-      margin: 0 auto 16px auto;
-      text-align: center;
-      color: #ccc;
-      line-height: 1.5;
-    }
-    .modal iframe {
+
+    .modal-content {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, #151515 100%);
+      border-radius: var(--card-radius);
       width: 90%;
+      max-width: 900px;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-color);
+      transform: scale(0.9);
+      animation: modalAppear 0.3s forwards;
+    }
+
+    @keyframes modalAppear {
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .modal-header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .modal-header h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .modal-body {
+      margin-bottom: 25px;
+    }
+
+    .modal-description {
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .modal iframe {
+      width: 100%;
       max-width: 800px;
       height: 450px;
       border: none;
       border-radius: 12px;
       background: #000;
+      margin: 0 auto;
+      display: block;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
+
     .close-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #222;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 8px;
-      color: #fff;
+      margin-top: 25px;
+      padding: 12px 26px;
+      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+      border: none;
+      border-radius: 10px;
+      color: white;
       cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 15px rgba(68, 68, 68, 0.3);
+      font-family: 'Montserrat', sans-serif;
     }
+
     .close-btn:hover {
-      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(68, 68, 68, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+      }
+      
+      .modal-content {
+        padding: 20px;
+        width: 95%;
+      }
+      
+      .modal iframe {
+        height: 300px;
+      }
+      
+      .logo {
+        font-size: 28px;
+      }
+      
+      .card {
+        padding: 16px;
+      }
+      
+      .emoji {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px;
+        padding: 15px;
+      }
+      
+      .modal iframe {
+        height: 250px;
+      }
+      
+      .search-box {
+        margin: 25px auto;
+      }
+      
+      .card {
+        padding: 14px;
+      }
+      
+      .emoji {
+        font-size: 28px;
+      }
+      
+      .card h3 {
+        font-size: 14px;
+      }
+      
+      .keyword {
+        font-size: 11px;
+        padding: 3px 8px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>P a i n e l 7 </header>
+  <!-- Efeito de partículas de fundo -->
+  <div class="particles" id="particles"></div>
+
+  <header>
+    <div class="logo">PAINEL 7</div>
+    <div class="tagline">Ferramentas e Recursos Exclusivos</div>
+  </header>
 
   <div class="search-box">
-    <input type="text" id="search" placeholder="Buscar por Nome">
+    <input type="text" id="search" placeholder="Buscar por nome, palavra-chave...">
+    <i class="fas fa-search"></i>
   </div>
 
   <div class="grid" id="cards"></div>
 
   <!-- modal player -->
   <div class="modal" id="modal">
-    <h2 id="modalTitle"></h2>
-    <p><strong>Descrição:</strong> <span id="modalDescription"></span></p>
-    <p><strong>Tutorial:</strong></p>
-    <iframe id="modalPlayer" allowfullscreen></iframe>
-    <button class="close-btn" id="closeModal">Fechar</button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle"></h2>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description"><strong>Descrição:</strong> <span id="modalDescription"></span></p>
+        <p class="modal-description"><strong>Tutorial:</strong></p>
+        <iframe id="modalPlayer" allowfullscreen></iframe>
+      </div>
+      <button class="close-btn" id="closeModal">Fechar</button>
+    </div>
   </div>
 
   <script>
     const CATEGORIES = [
-      { emoji: "🕵️", title: "Puxar Dados", keywords: ["Cpf","Nome","Telefone"], description: "https://t.me/puxadasSeven https://t.me/sevenpuxada", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+      { emoji: "🕵️", title: "Puxar Dados", keywords: ["Cpf","Nome","Telefone"], description:
+      "Puxar dados via CPF, TELEFONE,NOME...https://t.me/puxadasSeven https://t.me/sevenpuxada", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
       { emoji: "🍊", title: "Lara Facil", keywords: ["Pagbank","Cora","Outros..."], description: "Dicas e truques para melhorar sua vida amorosa.", video: "https://drive.google.com/file/d/SEU_ID_DE_VIDEO/preview" },
       { emoji: "💰", title: "50$ a 80$ No dia", keywords: ["Telegram","Whatssap","Instagram"], description: "Conheça os veículos mais potentes.", video: "https://www.youtube.com/embed/ScMzIvxBSi4" },
       { emoji: "📚", title: "Ebooks", keywords: ["cidades","bairro","turismo"], description: "Explore as cidades mais interessantes do mundo.", video: "https://www.youtube.com/embed/tgbNymZ7vqY" }
@@ -176,6 +549,46 @@
     const modalDescription = document.getElementById("modalDescription");
     const modalPlayer = document.getElementById("modalPlayer");
     const closeModal = document.getElementById("closeModal");
+    const particlesContainer = document.getElementById("particles");
+
+    // Função para detectar e converter URLs em links clicáveis
+    function linkify(text) {
+      // Expressão regular para detectar URLs
+      const urlRegex = /(https?:\/\/[^\s]+)/g;
+      
+      // Substitui URLs por tags <a> com a classe auto-link
+      return text.replace(urlRegex, function(url) {
+        // Adiciona o protocolo se não estiver presente (para links que começam com www)
+        let href = url;
+        if (!url.startsWith('http')) {
+          href = 'https://' + url;
+        }
+        
+        return '<a href="' + href + '" target="_blank" class="auto-link">' + url + '</a>';
+      });
+    }
+
+    // Criar partículas de fundo
+    function createParticles() {
+      for (let i = 0; i < 25; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        
+        const size = Math.random() * 20 + 10;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const delay = Math.random() * 20;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.opacity = `${0.1 + Math.random() * 0.2}`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
 
     function normalize(str) {
       return str.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu,"");
@@ -188,32 +601,64 @@
         const hay = normalize(c.title + " " + (c.keywords||[]).join(" "));
         return q.split(/\s+/).every(piece=>hay.includes(piece));
       });
+      
       if(filtered.length===0){
-        grid.innerHTML = '<div class="empty">Nada encontrado</div>';
+        grid.innerHTML = `
+          <div class="empty">
+            <i class="fas fa-search"></i>
+            <h3>Nenhum resultado encontrado</h3>
+            <p>Tente usar termos de pesquisa diferentes</p>
+          </div>`;
         return;
       }
-      filtered.forEach(c=>{
+      
+      filtered.forEach((c, index) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.innerHTML = `<div class="emoji">${c.emoji}</div>
-                          <h3>${c.title}</h3>
-                          <p>${(c.keywords||[]).slice(0,4).join(" • ")}</p>`;
+        card.innerHTML = `
+          <div class="emoji">${c.emoji}</div>
+          <h3>${c.title}</h3>
+          <div class="keywords">
+            ${(c.keywords||[]).slice(0,4).map(k => `<span class="keyword">${k}</span>`).join('')}
+          </div>`;
+        
+        // Adiciona um delay progressivo para a animação de cada card
+        card.style.animationDelay = `${index * 0.1}s`;
+        
         card.addEventListener("click", ()=>{
           modal.classList.add("active");
           modalTitle.textContent = c.emoji + " " + c.title;
-          modalDescription.textContent = c.description || "";
+          
+          // Aplica a detecção de links na descrição
+          modalDescription.innerHTML = linkify(c.description || "");
+          
           modalPlayer.src = c.video;
+          document.body.style.overflow = 'hidden';
         });
+        
         grid.appendChild(card);
       });
     }
 
+    // Inicializar
+    createParticles();
     renderCards();
+    
     search.addEventListener("input", e=>renderCards(e.target.value));
 
     closeModal.addEventListener("click", ()=>{
       modal.classList.remove("active");
       modalPlayer.src = "";
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Fechar modal clicando fora do conteúdo
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+        modalPlayer.src = "";
+        document.body.style.overflow = 'auto';
+      }
     });
   </script>
 </body>
